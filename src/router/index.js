@@ -4,6 +4,7 @@ import Index from '@/components/Index'
 import My from '@/components/My'
 import Back from '@/components/Back'
 import MapBai from '@/components/MapBai'
+import Foods from '@/components/Foods'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/mapbai',
       name: 'mapbai',
       component: MapBai
+    },
+    {
+      path: '/foods',
+      name: 'foods',
+      component: Foods
     }
 
   ]

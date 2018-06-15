@@ -1,6 +1,7 @@
 <template>
   <div class="index">
     <h1>{{ msg }}</h1>
+    <PopLayer></PopLayer>
     <button class="btn btn-warning">扫码取餐</button>
 
     <div class="img">
@@ -16,6 +17,7 @@
 
 <script>
 import MapBai from "@/components/MapBai";
+import PopLayer from "@/components/PopLayer";
 export default {
   name: "Index",
   comments: {
@@ -49,7 +51,8 @@ export default {
     });
   },
   components: {
-    MapBai
+    MapBai,
+    PopLayer
   }
 };
 </script>

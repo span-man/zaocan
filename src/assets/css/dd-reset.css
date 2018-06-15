@@ -7,5 +7,9 @@ img { border:none; vertical-align:top; }
 table { border-collapse:collapse; }
 input,textarea { outline:none; }
 textarea { resize:none; overflow:auto; }
-body { font-size:12px; font-family:"Î¢ÈíÑÅºÚ"; }
+body { font-size:12px; font-family:"å¾®è½¯é›…é»‘"; }
+
+div{
+    box-sizing: border-box;
+}
 /* end reset */
