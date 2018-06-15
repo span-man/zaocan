@@ -1,0 +1,43 @@
+
+
+/* init */
+.dd-clear { zoom:1; }
+.dd-clear:after { content:''; display:block; clear:both; }
+.dd-fl { float:left; }
+.dd-fr { float:right; }
+
+
+.dd-row{
+    display: flex;
+    flex-direction: row;
+}t
+
+.dd-column{
+    display: flex;
+    flex-direction: column;
+}
+
+/*固定到底部  */
+.dd-fixed-bottom{
+    position: fixed;
+    bottom: 0;
+    width: 100%
+}
+/*固定到顶部  */
+.dd-fixed-top{
+    position: fixed;
+    top: 0;
+    width: 100%
+}
+/* flex水平居中 */
+.dd-center{
+    justify-content: center;
+    align-items: center;
+}
+.dd-h-center{
+    justify-content: center;
+}
+.dd-v-center{
+    align-items: center;
+}
+/* end init */
