@@ -1,33 +1,21 @@
 <template>
-    <div class="popLayer dd-column">
+    <div class="pop dd-column">
         <div class="head dd-row dd-h-right">
             <img src="@/assets/img/logo.png" alt="x">
         </div>
         <div class="body">
-            <MechineNumber></MechineNumber>
+            <p>{{msg ? msg : 'o.0'}}</p>
         </div>
-        <div class="foot dd-row dd-center">
-            <button class="btn btn-warning " @click="confirm">确定</button>
-        </div>
+        
     </div>
 </template>
 <script>
-import MechineNumber from '@/components/MechineNumber.vue'
-import Tip from '@/components/Tip.vue'
 export default {
-    methods: {
-        confirm () {
-            this.$router.push({path: '/foods'})
-        }
-    },
-    components: {
-        MechineNumber: MechineNumber,
-        Tip: Tip
-    }
+    props:['msg']
 }
 </script>
 <style scoped>
-    .popLayer{
+    .pop{
         background: rgba(0,0,0,0.8);
         /* top: 20vw; */
         border-radius: 5pt;

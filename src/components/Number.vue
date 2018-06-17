@@ -1,10 +1,12 @@
 <template>
     <div class="number dd-row">
-        <div class="minus" @click="minus" v-show="!!number">
-            <img src="@/assets/img/minus.png" alt="-">
+        <div class="minus" @click="minus" >
+            <img v-show="!!num" src="@/assets/img/minus.png" alt="-">
         </div>
-        <div class="num" v-show="!!number">
-            {{number}}
+        <div class="num" >
+          <p v-show="!!num">
+            {{num}}            
+          </p>
         </div>
         <div class="add" @click="add" >
             <img src="@/assets/img/add.png" alt="+">
@@ -13,20 +15,22 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      number: 0
-    };
+  data(){
+    return{
+      num: 0
+    }
   },
   methods: {
     add() {
-      this.number++;
+      this.num++;
+      this.$emit('refreshbizlines',this.num)
     },
     minus() {
-      if (this.number - 1 < 0) {
+      if (this.num - 1 < 0) {
         return;
       }
-      this.number--;
+      this.num--;
+      this.$emit('refreshbizlines',this.num)
     }
   }
 };
@@ -35,19 +39,32 @@ export default {
 .number {
   justify-content: flex-end;
   background: #cccccc;
-  width: 200pt;
-  height: 140pt;
+  width: var(--number-width);
+  height: var(--number-height);
 }
 .number > div {
   flex: 1;
 }
 .number .num {
-  background: red;
+    align-items: center;
+    align-self: center;
+    text-align: center;
 }
+/* 加减 */
 .add,
 .minus {
-  width: 12pt;
-  height: 12pt;
+  width: 8pt;
+  height: 8pt;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.add img,
+.minus img{
+  width: 8pt;
+  height: 8pt;
 }
 </style>
 

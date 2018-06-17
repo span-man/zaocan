@@ -39,6 +39,7 @@
 /* 水平居中 */
 .dd-h-center{
     justify-content: center;
+    text-align: center;
 }
 /* 垂直居中 */
 .dd-v-center{
@@ -51,5 +52,9 @@
 /* 两个内部元素 靠在两边 */
 .dd-h-2side{
     justify-content: space-between;
+}
+/* 另一边宽度固定后， 这边宽度自适应  */
+.dd-flex1{
+    flex: 1;
 }
 /* end init */

@@ -5,6 +5,7 @@ import My from '@/components/My'
 import Back from '@/components/Back'
 import MapBai from '@/components/MapBai'
 import Foods from '@/components/Foods'
+import Pay from '@/components/Pay'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/foods',
       name: 'foods',
       component: Foods
+    },
+    {
+      path: '/pay',
+      name: 'pay',
+      component: Pay
     }
 
   ]
