@@ -15,22 +15,24 @@
 </template>
 <script>
 export default {
-  data(){
-    return{
+  data() {
+    return {
       num: 0
-    }
+    };
   },
   methods: {
     add() {
+      event.stopPropagation();
       this.num++;
-      this.$emit('refreshbizlines',this.num)
+      this.$emit("refreshbizlines", this.num);
     },
     minus() {
+      event.stopPropagation();
       if (this.num - 1 < 0) {
         return;
       }
       this.num--;
-      this.$emit('refreshbizlines',this.num)
+      this.$emit("refreshbizlines", this.num);
     }
   }
 };
@@ -46,9 +48,9 @@ export default {
   flex: 1;
 }
 .number .num {
-    align-items: center;
-    align-self: center;
-    text-align: center;
+  align-items: center;
+  align-self: center;
+  text-align: center;
 }
 /* 加减 */
 .add,
@@ -62,7 +64,7 @@ export default {
 }
 
 .add img,
-.minus img{
+.minus img {
   width: 8pt;
   height: 8pt;
 }

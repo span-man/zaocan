@@ -1,0 +1,41 @@
+  pic:'@/assets/img/logo.png',
+                    name: '111煎饼',
+                    stock:11,
+                    intro:'好吃的煎饼惺惺惜惺惺想111111x 洒洒水少时诵诗书所',
+                    price:12.11,
+                    num:0
+					
+					
+					
+					
+					
+					:data-index="index" v-on:refreshbizlines="total($event,index)"
+					
+					    // 合计
+    total(_event,_index){
+        
+        console.log("_event-来自子组件的传值：个数 num-->",_event)
+        console.log("_index-当前点选的元素的下标-->",_index)
+
+        console.log("this.totalMoney=->",this.totalMoney)
+        this.arrs[_index].num=_event;
+        let totalMoney=0;
+        this.arrs.map((item)=>{
+            totalMoney += (item.price * item.num) 
+            console.log(item.price);
+            console.log(item.num);
+        })
+        console.log(totalMoney);
+        this.totalMoney= totalMoney;
+    },
+	
+	
+	
+	思路
+	
+	点击计数 调用buycar的 函数
+	
+	
+					
+					
+					

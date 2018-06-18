@@ -35,6 +35,7 @@
 .dd-center{
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 /* 水平居中 */
 .dd-h-center{

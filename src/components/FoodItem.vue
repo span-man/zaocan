@@ -1,45 +1,77 @@
 <template>
-    <div class="foodItem dd-row">
-        <div class="left">
-            <img src="@/assets/img/logo.png" alt="具体参数">
+    <div class="foodItem dd-row dd-h-2side"  @click='detail' >
+      
+        <div class="left dd-row dd-center">
+            <img class="" :src="son.pic" alt="具体参数">
         </div>
          <div class="right dd-column">
-            <div>煎饼</div>
-            <div class="dd-row ">
-                <p>月售 24</p>
+            <div class="dd-row dd-v-center">
+                <p>{{son.name}}</p>
+                <p class="stock">库存·{{son.stock}}</p>
             </div>
-            <div class="introduce">简介：好吃的煎饼非常的好吃呀</div>
+            <div class="introduce">简介：{{son.intro}}</div>
+            <div class="dd-row dd-h-2side">
+                <p>￥{{son.price}}</p>
+                <!-- <Number :data-index="index" v-on:refreshbizlines="total($event,index)"></Number> -->
+                <Number></Number>
+            </div>
         </div>
     </div>
 </template>
 <script>
+import Number from "@/components/Number";
+import PopIntro from "@/components/PopIntro.vue";
 export default {
-    
-}
+  props: ["son"],
+  data() {
+    return {};
+  },
+  methods: {
+    detail() {
+    //   alert("我是 foods的子组件。");
+      this.$emit("ffclose");
+    }
+  },
+  components: {
+    Number
+  }
+};
 </script>
 <style scoped>
 .foodItem {
   z-index: 100;
   background: #ccc;
+  margin: 5pt 0;
 }
 .left {
-    flex: 1;
+  width: 60pt;
 }
 .left img {
-  width: 20pt;
-  height: 20pt;
+  width: 50pt;
+  height: 50pt;
 }
-.right{
-    width: 250pt;
-    color: #fff;
-    font-size: 12pt;
+.right {
+  margin-left: 5pt;
+  color: #fff;
+  font-size: 12pt;
 }
-.right .introduce{
-
+.right .introduce {
+  width: 220pt;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
 
+/* 库存 */
+.stock {
+  margin-left: 10pt;
+  border-radius: 5pt 5pt 5pt 0;
+  padding: 0pt 3pt;
+  color: #000;
+  background: var(--basic-color);
+  font-size: 10pt;
+  height: 14pt;
+  line-height: 14pt;
 }
 </style>
 

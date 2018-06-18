@@ -42,6 +42,7 @@ export default {
 
 <style>
   :root{
+    --basic-color:#f8c700; /* 基本色 */
     --foodImg-width:20pt; /* 食物图片的 宽 */
     --foodImg-height:20pt;  /* 食物图片的 高 */
     --number-width:100pt; /* 数量调节模块的 宽度 */

@@ -29,6 +29,11 @@ npm test
 # 上传github网址
 ## https://github.com/span-man/zaocan.git
 
+--
+--	PopIntro	食物介绍的弹层
+--
+
+
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
