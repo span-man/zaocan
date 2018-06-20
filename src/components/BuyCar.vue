@@ -10,9 +10,7 @@
                     <span @click="cleanAll">清空</span>
                 </div>
             </div>
-
-
-            <div v-for="(item,index) in arrs" v-bind:key="index" class="item dd-row dd-h-2side ">
+            <div v-for="(item,index) in buyCarArrs" v-bind:key="index" class="item dd-row dd-h-2side ">
                 <!-- 左面的食物图 和食品名称 -->
                <div class="dd-row dd-h-2side dd-flex1 left">
                     <div class="dd-row ">
@@ -27,11 +25,13 @@
                </div>
                <!-- 右边的加减 数量 -->
                 <div class="number right">
-                    <!-- <Number :num="item.num" v-on:total="total"></Number> -->
-                    <Number :data-index="index" v-on:refreshbizlines="total($event,index)"></Number>
+                    <Number 
+                    :id="item.id"
+                :number="item.num"
+                    ></Number>
                 </div>
             </div>
-
+ 
 
         </div>
         <!-- 点出拉出层的按钮 合计钱数 去结算按钮 -->
@@ -52,73 +52,42 @@
 </template>
 <script>
 import Number from "@/components/Number";
+
+import AllData from "@/components/data.js";
 export default {
   data() {
     return {
-      carBool: false, /* 其控制 点击了碗之后 弹出层的显示与否 */
-      carBottomStyleBool: false, /* 其控制 下方样式 和 禁用与否  */
-      totalMoney:0,
-      arrs: [
-        {
-          pic:
-            "http://huyaimg.msstatic.com/avatar/1093/f5/9f51df52143c14ba7fab3b01849dd4_180_135.jpg?0?424782",
-          name: "煎饼1",
-          price: 1,
-          num: 0
-        },
-        {
-          pic:
-            "http://huyaimg.msstatic.com/avatar/1093/f5/9f51df52143c14ba7fab3b01849dd4_180_135.jpg?0?424782",
-          name: "煎饼1",
-          price: 2,
-          num: 0
-        }
-      ]
+      carBool: false /* 其控制 点击了碗之后 弹出层的显示与否 */,
+      carBottomStyleBool: false /* 其控制 下方样式 和 禁用与否  */,
+      totalMoney: AllData.totalMoney,
+
+      buyCarArrs: AllData.InTheBuyCar
     };
   },
-  mounted(){
-    //   this.total();
-  },
+  mounted() {},
   methods: {
-    //   右上角的清理
+    //   右上角的清理 清空
     cleanAll() {
-      if (!!this.arrs) {
-        this.arrs = null;
-        console.log(this.arrs);
-        this.carBool = false;
-      }
+      this.buyCarArrs = [];
+      AllData.InTheBuyCar = [];
+      this.carBool = false;
     },
     //弹出层的显示与否
     outLayer() {
-      // alert("弹出 弹出层")
-      if (!this.arrs) {
+      console.log("弹出 弹出层");
+      console.log("当前的数据是-->", this.buyCarArrs);
+      if (!this.buyCarArrs) {
         return false;
       }
-      this.carBool = true;
+      this.carBool = !this.carBool;
     },
-    // 合计
-    total(_event,_index){
-        
-        console.log("_event-来自子组件的传值：个数 num-->",_event)
-        console.log("_index-当前点选的元素的下标-->",_index)
 
-        console.log("this.totalMoney=->",this.totalMoney)
-        this.arrs[_index].num=_event;
-        let totalMoney=0;
-        this.arrs.map((item)=>{
-            totalMoney += (item.price * item.num) 
-            console.log(item.price);
-            console.log(item.num);
-        })
-        console.log(totalMoney);
-        this.totalMoney= totalMoney;
-    },
     /*
     * 去结算
-    */ 
-   toPay() {
-       this.$router.push({path:'/pay'})
-   }
+    */
+    toPay() {
+      this.$router.push({ path: "/pay" });
+    }
   },
   components: {
     Number

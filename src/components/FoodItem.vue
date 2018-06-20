@@ -1,5 +1,5 @@
 <template>
-    <div class="foodItem dd-row dd-h-2side"  @click='detail' >
+    <div class="foodItem dd-row "  @click='detail' >
       
         <div class="left dd-row dd-center">
             <img class="" :src="son.pic" alt="具体参数">
@@ -13,7 +13,10 @@
             <div class="dd-row dd-h-2side">
                 <p>￥{{son.price}}</p>
                 <!-- <Number :data-index="index" v-on:refreshbizlines="total($event,index)"></Number> -->
-                <Number></Number>
+                <Number 
+                :id="id"
+                :number="number"
+                ></Number>
             </div>
         </div>
     </div>
@@ -22,13 +25,13 @@
 import Number from "@/components/Number";
 import PopIntro from "@/components/PopIntro.vue";
 export default {
-  props: ["son"],
+  props: ["son",'id','number'],
   data() {
     return {};
   },
   methods: {
     detail() {
-    //   alert("我是 foods的子组件。");
+      //   alert("我是 foods的子组件。");
       this.$emit("ffclose");
     }
   },
@@ -44,7 +47,8 @@ export default {
   margin: 5pt 0;
 }
 .left {
-  width: 60pt;
+  /* width: 60pt; */
+  flex: 1;
 }
 .left img {
   width: 50pt;
@@ -56,7 +60,7 @@ export default {
   font-size: 12pt;
 }
 .right .introduce {
-  width: 220pt;
+  width: 250pt;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

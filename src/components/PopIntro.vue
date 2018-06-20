@@ -6,16 +6,19 @@
             </div>
             <div class="body dd-column">
                 <div class="dd-row dd-center">
-                    <img class="footPic" :src="detailData.pic" alt="x">
+                    <img class="footPic" :src="son.pic" alt="x">
                 </div>
                 <div class="dd-row dd-v-center">
-                    <p>{{detailData.name}}</p>
-                    <p class="stock">库存·{{detailData.stock}}</p>
+                    <p>{{son.name}}</p>
+                    <p class="stock">库存·{{son.stock}}</p>
                 </div>
-                <div class="introduce">简介：{{detailData.intro}}</div>
+                <div class="introduce">简介：{{son.intro}}</div>
                 <div class="dd-row dd-h-2side">
-                    <p>￥{{detailData.price}}</p>
-                    <Number></Number>
+                    <p>￥{{son.price}}</p>
+                    <Number 
+                      :id="son.id"
+                :number="son.num"
+                    ></Number>
                 </div>
             </div>
         </div>
@@ -24,22 +27,27 @@
 <script>
 import MechineNumber from "@/components/MechineNumber.vue";
 import Number from "@/components/Number.vue";
+
+import AllData from "@/components/data.js";
 export default {
-    props:['son'],
   data() {
     return {
       showBool: false,
-      detailData:{}
+      son:AllData.popIntro
     };
   },
   methods: {
+      /* 
+      如果传过来有数据就让其，传给本页面。
+      如果没数据，就只是单纯的让模态框进行显示
+      */
     close(_data) {
-        if(!!_data){
-            console.log(_data)
-            this.detailData=_data
-        }
+      if (!!_data) {
+        console.log(_data);
+        this.son = _data;
+      }
       this.showBool = !this.showBool;
-    }
+    },
   },
   components: {
     MechineNumber: MechineNumber,
@@ -48,15 +56,15 @@ export default {
 };
 </script>
 <style scoped>
-.all{
-    position: fixed;
-    width: 100%;
-    height: 180vw;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 98;
+.all {
+  position: fixed;
+  width: 100%;
+  height: 180vw;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 98;
 }
 .popIntro {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.3);
   border-radius: 5pt;
   top: 30vw;
   z-index: 99;
@@ -73,10 +81,10 @@ export default {
   height: 20pt;
 }
 /* 食物主图 */
-.footPic{
-    width: 140pt;
-    height: 140pt;
-} 
+.footPic {
+  width: 140pt;
+  height: 140pt;
+}
 /* 库存 */
 .stock {
   margin-left: 10pt;

@@ -4,11 +4,14 @@
             <MechineNumber></MechineNumber>
         </div>
         <div class="body">
-            <PopIntro   ref="child"></PopIntro>
-            <FoodItem v-for="(item,index) in array" :key="item" :son="item" v-on:ffclose="ffclose(index)"></FoodItem>
+            <PopIntro ref="child" :son="popData" v-on:useTotal="toUseBuyCarFTotal"></PopIntro>
+            <FoodItem v-for="(item,index) in array" v-bind:key="index" 
+            :son="item"   
+             :id="item.id" :number="item.num"
+             ></FoodItem>
         </div>
         <div class="foot">
-            <BuyCar></BuyCar>
+            <BuyCar ref="child2"></BuyCar>
         </div>
       
     </div>
@@ -19,41 +22,16 @@ import FoodItem from "@/components/FoodItem.vue";
 import BuyCar from "@/components/BuyCar.vue";
 import PopIntro from "@/components/PopIntro.vue";
 
+import AllData from "@/components/data.js";
+
 export default {
   data() {
     return {
-      popdata: {},
-      array: [
-        {
-          pic:
-            "http://huyaimg.msstatic.com/avatar/1093/f5/9f51df52143c14ba7fab3b01849dd4_180_135.jpg?0?424782",
-          name: "111煎饼",
-          stock: 11,
-          intro: "好吃的煎饼惺惺惜惺惺想111111x 洒洒水少时诵诗书所",
-          price: 12.11,
-          num: 0
-        },
-        {
-          pic:
-            "http://huyaimg.msstatic.com/avatar/1093/f5/9f51df52143c14ba7fab3b01849dd4_180_135.jpg?0?424782",
-          name: "222煎饼",
-          stock: 229,
-          intro: "好吃的煎饼惺惺惜惺惺想22222x 洒洒水少时诵诗书所",
-          price: 12.22,
-          num: 0
-        },
-        {
-          pic:
-            "http://huyaimg.msstatic.com/avatar/1093/f5/9f51df52143c14ba7fab3b01849dd4_180_135.jpg?0?424782",
-          name: "豆浆",
-          stock: 11,
-          intro: "333好吃的煎饼惺惺惜惺惺想22222x 洒洒水少时诵诗书所",
-          price: 33.22,
-          num: 0
-        }
-      ]
+      popData: {},
+      array: AllData.goods
     };
   },
+  mounted() {},
   components: {
     MechineNumber,
     FoodItem,
@@ -61,10 +39,11 @@ export default {
     PopIntro
   },
   methods: {
-    ffclose(_index) {
-      //   alert("我接受到 子组件 PopIntro 来的事件。");
-      alert(_index);
-      this.$refs.child.close(this.array[_index]);
+    /* 去使用子组件的 total 方法 */
+    toUseBuyCarFTotal(_num) {
+      console.log(this);
+      this.addItem(this.array[_num]);
+      this.$refs.child2.total(_num);
     }
   }
 };
