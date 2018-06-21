@@ -1,9 +1,6 @@
 <template>
     <div class="pop dd-column " v-show="showBool">
-        <div class="head dd-row dd-h-right" @click="close">
-            <img src="@/assets/img/logo.png" alt="x">
-        </div>
-        <div class="body dd-column">
+        <div class="body dd-column dd-v-center">
             <img src="@/assets/img/logo.png" alt="x">
             <p>{{msg ? msg : 'o.0'}}</p>
         </div>
@@ -22,9 +19,6 @@ export default {
     };
   },
   methods: {
-    close() {
-      this.showBool = false;
-    }
   }
 };
 </script>

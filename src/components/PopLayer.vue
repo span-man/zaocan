@@ -1,7 +1,10 @@
 <template>
-    <div class="popLayer dd-column">
-        <div class="head dd-row dd-h-right">
+    <div class="popLayer dd-column" v-if="showBool">
+        <div class="head dd-row dd-h-right" >
+            <div @click="close">
             <img src="@/assets/img/logo.png" alt="x">
+
+            </div>
         </div>
         <div class="body">
             <MechineNumber></MechineNumber>
@@ -12,33 +15,47 @@
     </div>
 </template>
 <script>
-import MechineNumber from '@/components/MechineNumber.vue'
-import Tip from '@/components/Tip.vue'
+import MechineNumber from "@/components/MechineNumber.vue";
+import Tip from "@/components/Tip.vue";
 export default {
-    methods: {
-        confirm () {
-            this.$router.push({path: '/foods'})
-        }
+  data() {
+  return{
+        showBool: false
+  }
+  },
+  methods: {
+    confirm() {
+      this.$router.push({ path: "/foods" });
     },
-    components: {
-        MechineNumber: MechineNumber,
-        Tip: Tip
+    //   弹出层右上角的 关闭
+    close() {
+      this.showBool = !this.showBool;
     }
-}
+  },
+  components: {
+    MechineNumber: MechineNumber,
+    Tip: Tip
+  }
+};
 </script>
 <style scoped>
-    .popLayer{
-        background: rgba(0,0,0,0.8);
-        /* top: 20vw; */
-        border-radius: 5pt;
-        z-index: 99;
-        position: fixed;
-        height: 300pt;
-        width: 100%;    
-        padding: 5pt;
-    }
-    .head img{
-        width: 20pt;
-        height: 20pt;
-    }
+.popLayer {
+  background: rgba(0, 0, 0, 0.8);
+  /* top: 20vw; */
+  border-radius: 5pt;
+  z-index: 99;
+  position: fixed;
+  height: 300pt;
+  width: 100%;
+  padding: 5pt;
+}
+.head > div {
+  width: 20pt;
+  height: 20pt;
+  background: red;
+}
+.head > div > img {
+  width: 20pt;
+  height: 20pt;
+}
 </style>

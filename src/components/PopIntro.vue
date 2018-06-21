@@ -18,6 +18,7 @@
                     <Number 
                       :id="son.id"
                 :number="son.num"
+                  @changeTm="changeTm($event)"
                     ></Number>
                 </div>
             </div>
@@ -25,15 +26,14 @@
     </div>
 </template>
 <script>
-import MechineNumber from "@/components/MechineNumber.vue";
 import Number from "@/components/Number.vue";
 
-import AllData from "@/components/data.js";
 export default {
   data() {
     return {
+       tm: this.AllData.totalMoney,
       showBool: false,
-      son:AllData.popIntro
+      son:this.AllData.popIntro
     };
   },
   methods: {
@@ -43,14 +43,17 @@ export default {
       */
     close(_data) {
       if (!!_data) {
-        console.log(_data);
+        console.log("66666->",_data);
         this.son = _data;
       }
       this.showBool = !this.showBool;
     },
+        /* 改变总钱数 */
+    changeTm(_tm) {
+      this.$emit("changeTm",_tm)
+    },
   },
   components: {
-    MechineNumber: MechineNumber,
     Number
   }
 };

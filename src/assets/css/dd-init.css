@@ -58,4 +58,10 @@
 .dd-flex1{
     flex: 1;
 }
+/* 省略多余的文字 */
+.dd-ellipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 /* end init */

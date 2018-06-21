@@ -1,8 +1,8 @@
 <template>
     <div class="pop dd-column">
-        <div class="head dd-row dd-h-right">
+        <!-- <div class="head dd-row dd-h-right">
             <img src="@/assets/img/logo.png" alt="x">
-        </div>
+        </div> -->
         <div class="body">
             <p>{{msg ? msg : 'o.0'}}</p>
         </div>
@@ -16,7 +16,7 @@ export default {
 </script>
 <style scoped>
     .pop{
-        background: rgba(0,0,0,0.8);
+        background: rgba(0,0,0,0.4);
         /* top: 20vw; */
         border-radius: 5pt;
         z-index: 99;

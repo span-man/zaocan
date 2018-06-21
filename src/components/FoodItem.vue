@@ -1,5 +1,5 @@
 <template>
-    <div class="foodItem dd-row "  @click='detail' >
+    <div class="foodItem dd-row "  @click='detail(son)' >
       
         <div class="left dd-row dd-center">
             <img class="" :src="son.pic" alt="具体参数">
@@ -12,10 +12,10 @@
             <div class="introduce">简介：{{son.intro}}</div>
             <div class="dd-row dd-h-2side">
                 <p>￥{{son.price}}</p>
-                <!-- <Number :data-index="index" v-on:refreshbizlines="total($event,index)"></Number> -->
                 <Number 
                 :id="id"
                 :number="number"
+                  @changeTm="changeTm($event)"
                 ></Number>
             </div>
         </div>
@@ -25,14 +25,20 @@
 import Number from "@/components/Number";
 import PopIntro from "@/components/PopIntro.vue";
 export default {
-  props: ["son",'id','number'],
+  props: ["son", "id", "number"],
   data() {
-    return {};
+    return {
+      tm: this.AllData.totalMoney
+    };
   },
   methods: {
-    detail() {
-      //   alert("我是 foods的子组件。");
-      this.$emit("ffclose");
+    detail(_son) {
+      this.$emit("ffclose", _son);
+    },
+    /* 改变总钱数 */
+    changeTm(_tm) {
+      console.log("fooditem.vue-中的-->")
+      this.$emit('changeTm',_tm)
     }
   },
   components: {

@@ -1,18 +1,20 @@
 <template>
     <div class="pay dd-column dd-h-center">
         <span>确认支付</span>
-        <h1>￥{{0.01}}</h1>
+        <h1>￥{{forThePayment}}</h1>
         <p>剩余支付时间 {{hour}}:{{minute}}:{{second}}</p>
+       
         <button class="btn btn-danger">微信支付</button>
+         <button class="btn btn-warning">支付宝</button>
         <Tip v-show="show" :msg="msg"></Tip>
     </div>
 </template>
 <script>
-import Tip from "@/components/Tip"
+import Tip from "@/components/Tip";
 export default {
- 
   data() {
     return {
+      forThePayment: this.AllData.totalMoney,
       hour: "00",
       minute: "00",
       second: "00",
@@ -28,13 +30,12 @@ export default {
       this.formatTime(time);
       if (time < 0 || time == 0) {
         // alert("时间到，返回之前页面");
-        this.show=true;
-        setTimeout(()=>{
-            this.show=false;
-            clearInterval(timer);
-            window.history.back(-1);
-        },800)
-        
+        this.show = true;
+        setTimeout(() => {
+          this.show = false;
+          clearInterval(timer);
+          window.history.back(-1);
+        }, 800);
       }
     }, 1000);
   },
@@ -52,7 +53,7 @@ export default {
     }
   },
   components: {
-      Tip
+    Tip
   }
 };
 </script>

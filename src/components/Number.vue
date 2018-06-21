@@ -14,9 +14,8 @@
     </div>
 </template>
 <script>
-import AllData from "@/components/data.js";
 export default {
-  props: [ "id", "number"],
+  props: ["id", "number"],
   methods: {
     add() {
       event.stopPropagation();
@@ -29,32 +28,27 @@ export default {
 
       //这个是当前 add 的item元素
       let tempItem;
-      AllData.goods.map((item, index) => {
+      this.AllData.goods.map((item, index) => {
         if (item.id == this.id) {
           item.num++;
           tempItem = item;
           console.log("当前的 item 是-->", tempItem);
         }
       });
-
-      // 让 弹出层  等于当前点击的
-
-      AllData.popIntro = tempItem;
-
       /*
     *查询 购物车里是否有 要添加的
     */
       let tempnum = -1;
-      AllData.InTheBuyCar.map((item, index) => {
+      this.AllData.InTheBuyCar.map((item, index) => {
         if (item.id == this.id) {
           item = tempItem;
           tempnum++;
         }
       });
       if (tempnum == -1) {
-        AllData.InTheBuyCar.push(tempItem);
+        this.AllData.InTheBuyCar.push(tempItem);
       }
-      console.log("AllData.InTheBuyCar--->", AllData.InTheBuyCar);
+      console.log("this.AllData.InTheBuyCar--->", this.AllData.InTheBuyCar);
 
       // ===============上===========================
 
@@ -70,7 +64,7 @@ export default {
 
       //这个是当前 add 的item元素
       let tempItem;
-      AllData.goods.map((item, index) => {
+      this.AllData.goods.map((item, index) => {
         if (item.id == this.id) {
           item.num--;
           tempItem = item;
@@ -80,42 +74,49 @@ export default {
 
       // 让 弹出层  等于当前点击的
 
-      AllData.popIntro = tempItem;
+      this.AllData.popIntro = tempItem;
 
       /*
     *查询 购物车里是否有 要添加的
     */
       let tempnum = -1;
-      AllData.InTheBuyCar.map((item, index) => {
+      this.AllData.InTheBuyCar.map((item, index) => {
         if (item.id == this.id) {
           item = tempItem;
           tempnum++;
         }
       });
       if (tempnum == -1) {
-        AllData.InTheBuyCar.push(tempItem);
+        this.AllData.InTheBuyCar.push(tempItem);
       }
-      console.log("AllData.InTheBuyCar--->", AllData.InTheBuyCar);
+      console.log("this.AllData.InTheBuyCar--->", this.AllData.InTheBuyCar);
 
       // ==========================================
       this.total();
     },
     // 合计
     total() {
-      // let totalMoney = 0;
-      // this.buyCarArrs.map(item => {
-      //   totalMoney += item.price * item.num;
-      // });
-      // console.log(totalMoney);
-      // this.totalMoney = totalMoney;
-  
-      let t = 0;
-      AllData.InTheBuyCar.map(item => {
-        t += ( parseFloat(item.price,2) * parseFloat(item.num,2));
+      let tempIndex;
+      let __num = -1;
+      this.AllData.InTheBuyCar.map((item, index) => {
+        if (item.num == 0) {
+          tempIndex = index;
+          __num++;
+        }
       });
-      AllData.totalMoney = t;
-      console.log("ttttt--->",t)
-      console.log("AllData.totalMoney--->",AllData.totalMoney)
+      if (__num != -1) {
+        this.AllData.InTheBuyCar.splice(tempIndex, 1);
+      }
+
+      let t = 0;
+      this.AllData.InTheBuyCar.map(item => {
+        t += item.price * item.num;
+      });
+      // alert(parseFloat(t, 2));
+
+      this.AllData.totalMoney = t.toFixed(2);
+
+      this.$emit("changeTm", t.toFixed(2));
     }
   }
 };
