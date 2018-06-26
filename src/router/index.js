@@ -6,6 +6,11 @@ import Back from '@/components/Back'
 import MapBai from '@/components/MapBai'
 import Foods from '@/components/Foods'
 import Pay from '@/components/Pay'
+import MyOrder from '@/components/MyOrder'
+import PaymentHasBeen from '@/components/orderDetails/PaymentHasBeen'  /* 已经付款 */
+import Question from '@/components/questionAndAnswer/Question'  /* 取餐故障 */
+import Answer from '@/components/questionAndAnswer/Answer'  /* 取餐故障 */
+import Saoma from '@/components/orderDetails/Saoma.vue'  /* 扫码 */
 
 Vue.use(Router)
 
@@ -19,7 +24,10 @@ export default new Router({
     {
       path: '/my',
       name: 'My',
-      component: My
+      component: My,
+      children:[
+        
+      ]
     },
     {
       path: '/back',
@@ -40,7 +48,28 @@ export default new Router({
       path: '/pay',
       name: 'pay',
       component: Pay
+    },
+    {
+      path: '/my/myorder',
+      name: 'myorder',
+      component: MyOrder
+    },
+    {
+      path: '/my/myorder/paymenthasbeen',
+      name: 'PaymentHasBeen',
+      component: PaymentHasBeen
+    },{
+      path: '/my/myorder/paymenthasbeen/question',
+      name: 'Question',
+      component: Question
+    },{
+      path: '/my/myorder/paymenthasbeen/answer',
+      name: 'Answer',
+      component: Answer
+    },{
+      path: '/my/myorder/saoma',
+      name: 'Saoma',
+      component: Saoma
     }
-
   ]
 })

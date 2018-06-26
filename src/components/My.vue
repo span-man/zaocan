@@ -37,7 +37,7 @@ export default {
           title: "我的订单",
           intro: "0zhang",
           introColor: "#ccc",
-          link: "/foods"
+          link: "/my/myorder"
         },
         {
           icon: "@/assets/img/logo.png",

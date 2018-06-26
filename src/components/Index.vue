@@ -5,8 +5,6 @@
       <div class="dd-colum">
   <div class="dd-row dd-h-2side" @click="goToDetail">
         <p>智能早餐机 012 号</p>
-
-
         <p class="dd-ellipsis">地址：崇山南路崇山南路崇山南路崇山南路崇山南路</p>
       </div>  
       
@@ -52,8 +50,8 @@ export default {
           text: "我的"
         },
         {
-          href: "/my",
-          text: "我的"
+          href: "/my/myorder/saoma",
+          text: "扫码"
         }
       ]
     };
